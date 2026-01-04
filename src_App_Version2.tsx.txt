@@ -1,0 +1,33 @@
+import React, { useEffect, useState } from 'react';
+import { fetchApps } from './services/api';
+import Sidebar from './components/Sidebar';
+import AppCard from './components/AppCard';
+
+export default function App() {
+  const [apps, setApps] = useState<any[]>([]);
+  const [query, setQuery] = useState('');
+  const [theme, setTheme] = useState<'light'|'dark'>('dark');
+
+  useEffect(() => {
+    fetchApps().then(setApps);
+  }, []);
+
+  const filtered = apps.filter(a => {
+    const q = query.toLowerCase();
+    return !q || a.name.toLowerCase().includes(q) || (a.description || '').toLowerCase().includes(q);
+  });
+
+  return (
+    <div className={`app-root ${theme}`}>
+      <Sidebar onThemeToggle={() => setTheme(t => t==='dark'?'light':'dark')} />
+      <main className="main">
+        <header className="topbar">
+          <input className="search" placeholder="Buscar apps, juegos..." value={query} onChange={e=>setQuery(e.target.value)} />
+        </header>
+        <section className="grid">
+          {filtered.map(app => <AppCard key={app.id} app={app} />)}
+        </section>
+      </main>
+    </div>
+  );
+}

@@ -1,0 +1,20 @@
+import React from 'react';
+
+export default function Sidebar({ onThemeToggle }: { onThemeToggle: ()=>void }) {
+  return (
+    <aside className="sidebar">
+      <div className="logo">
+        <div className="icon" /> <div className="title">Launcher</div>
+      </div>
+      <nav>
+        <button className="nav-item">Juegos</button>
+        <button className="nav-item">Herramientas</button>
+        <button className="nav-item">Editores</button>
+        <button className="nav-item">Configuración</button>
+      </nav>
+      <div className="bottom">
+        <button onClick={onThemeToggle} className="theme-btn">Toggle Theme</button>
+      </div>
+    </aside>
+  );
+}

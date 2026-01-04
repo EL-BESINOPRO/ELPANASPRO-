@@ -1,0 +1,52 @@
+import React from 'react';
+
+function detectPlatform(): 'android'|'ios'|'windows'|'web' {
+  const ua = navigator.userAgent || '';
+  if (/android/i.test(ua)) return 'android';
+  if (/iphone|ipad|ipod/i.test(ua)) return 'ios';
+  if (/windows/i.test(ua)) return 'windows';
+  return 'web';
+}
+
+export default function AppCard({ app }: { app: any }) {
+  const platform = detectPlatform();
+
+  function onInstall() {
+    const p = app.platforms?.[platform];
+    if (platform === 'android' && p?.playstore_url) window.open(p.playstore_url, '_blank');
+    else if (platform === 'ios' && p?.app_store_url) window.open(p.app_store_url, '_blank');
+    else if ((platform === 'windows' || platform === 'web') && p?.installer_url) window.open(p.installer_url, '_blank');
+    else if (app.platforms?.web?.url) window.open(app.platforms.web.url, '_blank');
+    else alert('No hay instalador disponible para esta plataforma.');
+  }
+
+  function tryOpen() {
+    const p = app.platforms?.[platform];
+    // Tratar de abrir deep link y fallback a tienda/web
+    if (p?.deep_link) {
+      // intento simple: navegar a deep link; muchos navegadores bloquean, usar timeout fallback
+      window.location.href = p.deep_link;
+      setTimeout(()=> {
+        // fallback
+        if (p.playstore_url) window.open(p.playstore_url, '_blank');
+        else if (p.app_store_url) window.open(p.app_store_url, '_blank');
+        else if (app.platforms?.web?.url) window.open(app.platforms.web.url,'_blank');
+      }, 1500);
+      return;
+    }
+    if (app.platforms?.web?.url) window.open(app.platforms.web.url, '_blank');
+    else alert('No hay método para abrir esta app.');
+  }
+
+  return (
+    <article className="card">
+      <img src={app.icon} className="icon" alt={app.name} />
+      <h3>{app.name}</h3>
+      <p className="desc">{app.description}</p>
+      <div className="card-actions">
+        <button onClick={onInstall} className="btn primary">Instalar</button>
+        <button onClick={tryOpen} className="btn">Abrir</button>
+      </div>
+    </article>
+  );
+}

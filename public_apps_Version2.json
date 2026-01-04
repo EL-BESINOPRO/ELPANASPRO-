@@ -1,0 +1,25 @@
+[
+  {
+    "id": "roblox",
+    "name": "Roblox",
+    "description": "Plataforma con millones de juegos creados por la comunidad.",
+    "category": "Games",
+    "icon": "/icons/roblox.png",
+    "platforms": {
+      "android": {"playstore_url":"https://play.google.com/store/apps/details?id=com.roblox.client","deep_link":"roblox://"},
+      "ios": {"app_store_url":"https://apps.apple.com/app/roblox/id431946152"},
+      "windows": {"installer_url":"https://example.com/roblox_installer.exe"}
+    }
+  },
+  {
+    "id": "minecraft",
+    "name": "Minecraft",
+    "description": "Construye, explora y sobrevive.",
+    "category": "Games",
+    "icon": "/icons/minecraft.png",
+    "platforms": {
+      "android": {"playstore_url":"https://play.google.com/store/apps/details?id=com.mojang.minecraftpe"},
+      "ios": {"app_store_url":"https://apps.apple.com/app/minecraft/id479516143"}
+    }
+  }
+]

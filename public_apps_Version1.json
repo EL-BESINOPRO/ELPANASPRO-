@@ -1,0 +1,44 @@
+[
+  {
+    "id": "roblox",
+    "name": "Roblox",
+    "description": "Platforma con millones de juegos creados por la comunidad.",
+    "category": "Games",
+    "icon": "/assets/icons/roblox.png",
+    "size_bytes": 120000000,
+    "version": "1.0.0",
+    "tags": ["multiplayer", "kids"],
+    "platforms": {
+      "windows": {
+        "installer_url": "https://official.example.com/roblox/installer.exe",
+        "exe_path": "C:\\Program Files\\Roblox\\RobloxPlayer.exe"
+      },
+      "android": {
+        "playstore_url": "https://play.google.com/store/apps/details?id=com.roblox.client",
+        "deep_link": "roblox://launch"
+      },
+      "ios": {
+        "app_store_id": "431946152",
+        "app_store_url": "https://apps.apple.com/app/roblox/id431946152",
+        "universal_link": "https://www.roblox.com/"
+      },
+      "web": {
+        "url": "https://www.roblox.com"
+      }
+    },
+    "checksum": "sha256:...."
+  },
+  {
+    "id": "minecraft",
+    "name": "Minecraft",
+    "description": "Construye, explora y sobrevive.",
+    "category": "Games",
+    "icon": "/assets/icons/minecraft.png",
+    "size_bytes": 250000000,
+    "platforms": {
+      "android": {"playstore_url": "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe"},
+      "ios": {"app_store_url": "https://apps.apple.com/app/minecraft/id479516143"},
+      "windows": {"installer_url": "https://launcher.mojang.com/download/MinecraftInstaller.msi"}
+    }
+  }
+]
